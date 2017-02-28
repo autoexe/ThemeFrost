@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/bg_gray_material_200"/>
+
+    <com.serjiosoft.themefrost.custom_views.menu.DrawerMenuView
+        android:id="@+id/dmvLeftMenu_AM"
+        android:layout_width="@dimen/navigationDrawerMenu"
+        android:layout_height="fill_parent"
+        android:layout_gravity="start"/>
+</android.support.v4.widget.DrawerLayout>

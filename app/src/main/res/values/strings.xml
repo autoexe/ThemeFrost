@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">ThemeFrost</string>
+    <integer name="com_vk_sdk_AppId">5210325</integer>
+
+    <string name="button">Вход</string>
+    <string name="title_logo">"ВКОНТАКТЕ
+"<b>КИНОЗАЛ</b></string>
+    <string name="my_video">Мои видеозаписи</string>
+    <string name="error_message">"При загрузке данных произошла ошибка.
+Проверьте подключение к интернету."</string>
+    <string name="load_again"><u>Повторить попытку</u></string>
+    <string name="empty_message">"Данные отсутсвуют или у вас
+нет к ним доступа =("</string>
+    <string name="my_video_added">Добавленные</string>
+    <string name="my_video_with_me">Видео со мной</string>
+    <string name="drawer_close">Меню закрыто</string>
+    <string name="drawer_open">Меню открыто</string>
+    <string name="off_ads">Отключить рекламу</string>
+    <string name="configs">Настройки</string>
+    <string name="logout">Выйти</string>
+    <string name="albums">Альбомы</string>
+    <string name="wall">Стена</string>
+    <string name="catalog">Каталог</string>
+    <string name="news">Новости</string>
+    <string name="my_fave">Мои закладки</string>
+    <string name="my_friends">Мои друзья</string>
+    <string name="my_groups">Мои группы</string>
+    <string name="search">Поиск</string>
+    <string name="search_videos">Поиск видеозаписей</string>
+    <string name="authorization_successfully">Успешно!</string>
+    <string name="loading">Загрузка…</string>
+    <string name="link_user_vk">vk.com/id%s</string>
+    <string name="load_more">Загрузить еще</string>
+</resources>

@@ -1,0 +1,77 @@
+package com.serjiosoft.themefrost.fragments.all_videos;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.serjiosoft.themefrost.R;
+import com.serjiosoft.themefrost.fragments.base_classes.BaseFragment;
+
+/**
+ * Created by autoexec on 24.02.2017.
+ */
+
+public class AllVideosFragment extends BaseFragment {
+
+    private View contentView;
+    protected Toolbar mToolbar;
+    protected TabLayout mTabsLayout;
+    protected ViewPager mPagerVideos;
+    private VideosPagerAdapter mPagerVideosAdapter;
+    protected VideoRecycleFragment mVideoRecycleFragment;
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        contentView = super.onCreateView(inflater, container, savedInstanceState);
+        if(contentView == null){
+            contentView = inflater.inflate(R.layout.fragment_videos, container, false);
+        }
+        return  contentView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        contentView = null;
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mPagerVideos = (ViewPager) contentView.findViewById(R.id.vpMyVideosPager_FV);
+        mTabsLayout = (TabLayout) contentView.findViewById(R.id.tlVideoTabs_FV);
+        mToolbar = (Toolbar) contentView.findViewById(R.id.toolbar);
+
+        mToolbar.setTitle(R.string.my_video);
+        initializeToolbar(mToolbar);
+        initializePager();
+        initializeTabs();
+    }
+
+    private void initializePager(){
+        mPagerVideosAdapter = new VideosPagerAdapter(getChildFragmentManager());
+        mPagerVideosAdapter.addFragment(new VideoRecycleFragment(), getString(R.string.my_video_added));
+        mPagerVideosAdapter.addFragment(new VideoRecycleFragment(), getString(R.string.my_video_with_me));
+
+        mPagerVideos.setAdapter(mPagerVideosAdapter);
+
+    }
+
+    private void initializeTabs() {
+        mTabsLayout.setupWithViewPager(mPagerVideos);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+}

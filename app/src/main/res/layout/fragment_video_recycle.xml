@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sfl"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <com.serjiosoft.themefrost.custom_views.RecycleViewPicassoLight
+            android:id="@+id/rvListVideos_FVR"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/padding4"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include layout="@layout/error_when_load"/>
+
+    <include layout="@layout/empty_load"/>
+</FrameLayout>

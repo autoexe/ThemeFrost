@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:scrollbars="none"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120.0dp">
+
+            <com.serjiosoft.themefrost.custom_views.BaseShadowView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:colorAreaShadow="?colorStatusBar"
+                app:colorAreaShadowDarkness="?colorActionBar"
+                app:heightAreaAngleable="30.0dip"
+                app:percentageBasePoint="100"/>
+
+            <ImageView
+                android:layout_width="70.0dp"
+                android:layout_height="70.0dp"
+                android:id="@+id/ivIconUser_NM"
+                android:background="@drawable/ic_bg_icon"
+                android:padding="7.0dip"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginTop="20.0dip"
+                android:layout_marginRight="20.0dip"
+                android:src="@drawable/ic_user"
+                android:scaleType="centerCrop"
+                android:layout_alignParentRight="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:ellipsize="marquee"
+                android:gravity="right"
+                android:id="@+id/tvUserName_NM"
+                android:layout_marginTop="28.0dip"
+                android:singleLine="true"
+                android:layout_toLeftOf="@+id/ivIconUser_NM"
+                android:marqueeRepeatLimit="1"
+                style="@style/TextStyle"/>
+
+            <TextView
+                android:textSize="12.0sp"
+                android:textColor="@android:color/white"
+                android:ellipsize="marquee"
+                android:gravity="right"
+                android:id="@+id/tvUserLinkId_NM"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_toLeftOf="@id/ivIconUser_NM"
+                android:layout_below="@id/tvUserName_NM"
+                android:marqueeRepeatLimit="1" />
+        </RelativeLayout>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mivMyVideos_NM"
+            app:iconMenu="@drawable/ic_my_video"
+            app:iconTitle="@string/my_video"/>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivAlbums_NM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_albums"
+            app:iconTitle="@string/albums"/>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivWall_NM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_wall"
+            app:iconTitle="@string/wall"/>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivCatalog_NM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_catalog"
+            app:iconTitle="@string/catalog"/>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivNews_NM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_news"
+            app:iconTitle="@string/news"/>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivFave_NM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_fave"
+            app:iconTitle="@string/my_fave"/>
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivFriends_NM"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_friends"
+            app:iconTitle="@string/my_friends" />
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivComunities_NM"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_groups"
+            app:iconTitle="@string/my_groups" />
+
+        <com.serjiosoft.themefrost.custom_views.MenuItemView
+            android:id="@+id/mivSearch_NM"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            app:iconMenu="@drawable/ic_search"
+            app:iconTitle="@string/search_videos" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.serjiosoft.themefrost.custom_views.BaseInverseShadowView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:colorAreaShadow="?colorActionBar"
+                app:colorAreaShadowDarkness="?colorStatusBar"
+                app:heightAreaAngleable="30.0dip"
+                app:percentageBasePoint="100"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="30.0dip">
+
+                <com.serjiosoft.themefrost.custom_views.MenuItemView
+                    android:id="@+id/mivOffAds_NM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconMenu="@drawable/ic_ads"
+                    app:iconTitle="@string/off_ads"
+                    app:justIntent="true"/>
+
+                <com.serjiosoft.themefrost.custom_views.MenuItemView
+                    android:id="@+id/mivSettings_NM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconMenu="@drawable/ic_settings"
+                    app:iconTitle="@string/configs"
+                    app:justIntent="true"/>
+
+                <com.serjiosoft.themefrost.custom_views.MenuItemView
+                    android:id="@+id/mivLogout_NM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:iconMenu="@drawable/ic_logout"
+                    app:iconTitle="@string/logout"
+                    app:justIntent="true"/>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</ScrollView>

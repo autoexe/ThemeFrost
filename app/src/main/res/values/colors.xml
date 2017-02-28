@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
+    <color name="colorAccent">#fffff8f8</color>
+
+
+    <color name="theme1_bgItemVideo">#ff201e1e</color>
+    <color name="theme1_colorAction">#ff393535</color>
+    <color name="theme1_colorActionBar">#da493e</color>
+    <color name="theme1_colorBackgrounds">#fffff8f8</color>
+    <color name="theme1_colorBackgroundsDarkness">#ffe7dede</color>
+    <color name="theme1_colorStatusBar">#b71c1c</color>
+    <color name="theme1_colorText">#ff0d0202</color>
+    <color name="bg_gray_material_200">#ffececec</color>
+    <color name="theme_all_error_color">#99000000</color>
+</resources>

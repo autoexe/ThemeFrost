@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?colorActionBar">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSynchronization_AS"
+        android:layout_margin="@dimen/paddingContainer"
+        android:text="@string/button"
+        android:layout_alignParentBottom="true"
+        style="@style/ButtonStyleInverse"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rlContainerLogo_AS"
+        android:layout_marginBottom="@dimen/paddingSplashLogo"
+        android:layout_above="@+id/btnSynchronization_AS">
+
+        <com.serjiosoft.themefrost.custom_views.BaseShadowView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:colorAreaShadow="?colorBackgrounds"
+            app:colorAreaShadowDarkness="?colorBackgroundsDarkness"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/paddingSplashLogo"
+            android:layout_centerInParent="true">
+
+            <com.serjiosoft.themefrost.custom_views.TintImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:src="@drawable/ic_logo"
+                app:colorTint="?colorStatusBar"/>
+
+            <TextView
+                android:textSize="25.0sp"
+                android:textColor="?colorStatusBar"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_logo"
+                style="@style/TextStyle" />
+            
+            <com.serjiosoft.themefrost.custom_views.progresses.ProgressView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pbProgress_AS"
+                android:visibility="gone"
+                android:layout_margin="20.0dip"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

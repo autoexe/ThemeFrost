@@ -1,0 +1,49 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ThemeFrost_RED" parent="AppTheme">
+        <item name="colorActionBar">@color/theme1_colorActionBar</item>
+        <item name="colorStatusBar">@color/theme1_colorStatusBar</item>
+        <item name="colorAction">@color/theme1_colorAction</item>
+        <item name="colorBackgrounds">@color/theme1_colorBackgrounds</item>
+        <item name="colorBackgroundsDarkness">@color/theme1_colorBackgroundsDarkness</item>
+        <item name="colorVideoItem">@color/theme1_bgItemVideo</item>
+        <item name="colorText">@color/theme1_colorText</item>
+        <item name="colorToolbarSearch">@drawable/bg_search_toolbar_red</item>
+        <item name="selectorBtnStandard">@drawable/theme_red_selector_btn_standard</item>
+        <item name="selectorBtnInverse">@drawable/theme_red_selector_btn_inverse</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:textSize">17.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">13.0dip</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="ButtonStyleInverse" parent="@style/ButtonStyle">
+        <item name="android:textColor">?colorActionBar</item>
+        <item name="android:background">?selectorBtnInverse</item>
+    </style>
+
+    <style name="TextStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:padding">5.0dip</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="@style/Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">?colorBackgrounds</item>
+        <item name="tabIndicatorHeight">4.0dip</item>
+        <item name="tabPaddingStart">12.0dip</item>
+        <item name="tabPaddingEnd">12.0dip</item>
+    </style>
+
+</resources>

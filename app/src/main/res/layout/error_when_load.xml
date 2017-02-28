@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvBlockError_EWL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_error_logo"
+        android:gravity="center"
+        android:padding="@dimen/paddingContainer"
+        android:text="@string/error_message"
+        android:textColor="@color/theme_all_error_color"
+        android:textSize="15.0sp"
+        android:textStyle="bold"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tvLoadAgain_EWL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5.0dip"
+        android:text="@string/load_again"
+        android:textColor="?colorStatusBar"
+        android:textSize="17.0sp"
+        android:textStyle="bold"
+        android:visibility="gone"/>
+</LinearLayout>
