@@ -69,6 +69,13 @@ public class VideoRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
+
+    @Override
+    public int getItemViewType(int position) {
+        return (position == getItemCount() + -1 && this.isLoadMore) ? 2 : 1;
+    }
+
+
     public void addVideos(ArrayList<Video> videos) {
         mVideos.addAll(videos);
         notifyDataSetChanged();

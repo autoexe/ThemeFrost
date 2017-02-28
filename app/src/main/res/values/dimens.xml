@@ -10,4 +10,5 @@
     <dimen name="paddingHalfCardContainer">6.0dip</dimen>
     <dimen name="width_card_video">270.0dip</dimen>
     <dimen name="height_card_video">250.0dip</dimen>
+    <dimen name="height_video_detail_head">200.0dip</dimen>
 </resources>

@@ -31,4 +31,8 @@
     <string name="loading">Загрузка…</string>
     <string name="link_user_vk">vk.com/id%s</string>
     <string name="load_more">Загрузить еще</string>
+    <string name="add_to_me">Добавить к себе</string>
+    <string name="like">Мне нравится</string>
+    <string name="repost">Себе на стену</string>
+    <string name="translation_image">preview_image_animation_transition</string>
 </resources>

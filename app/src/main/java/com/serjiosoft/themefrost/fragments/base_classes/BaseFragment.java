@@ -42,4 +42,8 @@ public class BaseFragment extends Fragment implements IBaseEventer {
     protected void initializeToolbar(Toolbar toolbar) {
         mActivity.initToolbar(toolbar);
     }
+
+    protected boolean ignoreResponseIfNeeded() {
+        return !isAdded();
+    }
 }

@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 
 import com.serjiosoft.themefrost.R;
 import com.serjiosoft.themefrost.fragments.base_classes.BaseFragment;
+import com.serjiosoft.themefrost.managers.UserController;
+import com.serjiosoft.themefrost.themefrost_api.request.VKRequestType;
+import com.vk.sdk.api.VKApiConst;
+import com.vk.sdk.api.VKParameters;
+import com.vk.sdk.api.methods.VKApiWall;
 
 /**
  * Created by autoexec on 24.02.2017.
@@ -50,6 +55,8 @@ public class AllVideosFragment extends BaseFragment {
         mTabsLayout = (TabLayout) contentView.findViewById(R.id.tlVideoTabs_FV);
         mToolbar = (Toolbar) contentView.findViewById(R.id.toolbar);
 
+
+
         mToolbar.setTitle(R.string.my_video);
         initializeToolbar(mToolbar);
         initializePager();
@@ -57,8 +64,15 @@ public class AllVideosFragment extends BaseFragment {
     }
 
     private void initializePager(){
+        //Bundle args = new Bundle();
+        //args.putBundle("mVKParameter", (VKRequestType.VIDEO_GET).V);
+
         mPagerVideosAdapter = new VideosPagerAdapter(getChildFragmentManager());
-        mPagerVideosAdapter.addFragment(new VideoRecycleFragment(), getString(R.string.my_video_added));
+        mPagerVideosAdapter.addFragment(new VideoRecycleFragment()
+                .mTypeRequest(VKRequestType.VIDEO_GET)
+                .mVKParameter(VKParameters.from(VKApiConst.OWNER_ID, Integer.valueOf(UserController.getUser(mActivity).id),
+                        VKApiWall.EXTENDED, Integer.valueOf(1))), getString(R.string.my_video_added));
+
         mPagerVideosAdapter.addFragment(new VideoRecycleFragment(), getString(R.string.my_video_with_me));
 
         mPagerVideos.setAdapter(mPagerVideosAdapter);

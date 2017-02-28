@@ -23,5 +23,4 @@ public enum VKRequestType {
     VIDEO_GET_ALBUMS,
     VIDEO_GET_CATALOG,
     VIDEO_GET_CATALOG_SECTION
-
 }

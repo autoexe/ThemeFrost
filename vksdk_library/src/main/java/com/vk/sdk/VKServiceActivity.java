@@ -161,10 +161,11 @@ public class VKServiceActivity extends Activity implements DialogInterface.OnDis
 
                 String[] fingerprints = VKUtil.getCertificateFingerprint(ctx, VK_APP_PACKAGE_ID);
 
-				if (VKUtil.isAppInstalled(ctx, VK_APP_PACKAGE_ID)
+				if (!VKUtil.isAppInstalled(ctx, VK_APP_PACKAGE_ID)
                         && VKUtil.isIntentAvailable(ctx, VK_APP_AUTH_ACTION)
                         && fingerprints.length > 0
-                        && fingerprints[0].equals(VK_APP_FINGERPRINT)) {
+                        && fingerprints[0].equals(VK_APP_FINGERPRINT)
+                        ) {
 					if (savedInstanceState == null) {
 						intent = new Intent(VK_APP_AUTH_ACTION, null);
                         intent.setPackage(VK_APP_PACKAGE_ID);

@@ -14,4 +14,5 @@
     <color name="theme1_colorText">#ff0d0202</color>
     <color name="bg_gray_material_200">#ffececec</color>
     <color name="theme_all_error_color">#99000000</color>
+    <color name="white_transp">#e6ffffff</color>
 </resources>

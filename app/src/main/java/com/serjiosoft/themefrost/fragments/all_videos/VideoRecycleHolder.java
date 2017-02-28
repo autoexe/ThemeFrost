@@ -1,6 +1,8 @@
 package com.serjiosoft.themefrost.fragments.all_videos;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -8,8 +10,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.serjiosoft.themefrost.MainActivity;
 import com.serjiosoft.themefrost.R;
 import com.serjiosoft.themefrost.custom_views.RecycleViewPicassoLight;
+import com.serjiosoft.themefrost.fragments.video_detail.VideoDetailFragment;
 import com.serjiosoft.themefrost.managers.UserController;
 import com.serjiosoft.themefrost.managers.picasso.CircleTransform;
 import com.serjiosoft.themefrost.themefrost_api.models_api.Video;
@@ -38,15 +42,15 @@ public class VideoRecycleHolder extends RecyclerView.ViewHolder implements View.
 
     public VideoRecycleHolder(View itemView, Context context) {
         super(itemView);
-        this.mContext = context;
-        this.mImageVideo = (ImageView) itemView.findViewById(R.id.ivImagePreviewVideo_IV);
-        this.mOwnerImage = (ImageView) itemView.findViewById(R.id.ivPhotoOwner_IV);
-        this.mTitle = (TextView) itemView.findViewById(R.id.tvTitle_IV);
-        this.mDescription = (TextView) itemView.findViewById(R.id.tvDescription_IV);
-        this.mCountViews = (TextView) itemView.findViewById(R.id.tvCountSee_IV);
-        this.mDurationView = (TextView) itemView.findViewById(R.id.tvDurationVideo_IV);
-        this.mTitleOwner = (TextView) itemView.findViewById(R.id.tvNameOwner_IV);
-        this.mDateAdded = (TextView) itemView.findViewById(R.id.tvDateAdded_IV);
+        mContext = context;
+        mImageVideo = (ImageView) itemView.findViewById(R.id.ivImagePreviewVideo_IV);
+        mOwnerImage = (ImageView) itemView.findViewById(R.id.ivPhotoOwner_IV);
+        mTitle = (TextView) itemView.findViewById(R.id.tvTitle_IV);
+        mDescription = (TextView) itemView.findViewById(R.id.tvDescription_IV);
+        mCountViews = (TextView) itemView.findViewById(R.id.tvCountSee_IV);
+        mDurationView = (TextView) itemView.findViewById(R.id.tvDurationVideo_IV);
+        mTitleOwner = (TextView) itemView.findViewById(R.id.tvNameOwner_IV);
+        mDateAdded = (TextView) itemView.findViewById(R.id.tvDateAdded_IV);
         itemView.setOnClickListener(this);
     }
 
@@ -78,6 +82,10 @@ public class VideoRecycleHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View v) {
-
+        if (Build.VERSION.SDK_INT >= 21) {
+            ((MainActivity) this.mContext).nextFragment(VideoDetailFragment.builder().mVideo(this.mVideo).build(),
+                    ActivityOptionsCompat.makeSceneTransitionAnimation((MainActivity) this.mContext, this.mImageVideo, this.mContext.getString(R.string.translation_image)).toBundle());
+        }
+        ((MainActivity) this.mContext).nextFragment(VideoDetailFragment.builder().mVideo(this.mVideo).build());
     }
 }

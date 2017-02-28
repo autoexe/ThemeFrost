@@ -55,8 +55,22 @@ public final class JustVKRequest {
 
     public void execute(){
         switch (mVkRequestType){
+
             case USERS_GET:{
                 VKApi.users().get(mVkParameters).executeWithListener(mLocalVKListener);
+                break;
+            }
+
+            case VIDEO_GET_CATALOG_SECTION:{
+                break;
+            }
+
+            case WALL_GET:{
+                break;
+            }
+
+            case VIDEO_GET:{
+                VKApi.video().get(mVkParameters).executeWithListener(mLocalVKListener);
                 break;
             }
         }

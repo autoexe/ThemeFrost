@@ -16,7 +16,7 @@ public class FrostLoaderApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        VKSdk.initialize(getApplicationContext());
+        VKSdk.customInitialize(getApplicationContext(), 5210325, "5.21");
     }
 
 }

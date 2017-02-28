@@ -14,9 +14,16 @@ public class JustVKAction extends AsynchronousTask{
 
     @Override
     void gotActionInBackground(VKRequestType vKRequestType, VKResponse vKResponse) throws JsonSyntaxException, JSONException {
+
         switch (vKRequestType){
+
             case USERS_GET:{
                 successResult(FilterVideoResponses.parseWithGson(vKResponse.json.getJSONArray("response").toString(), FilterVideoResponses.typeTokenUserArray));
+                break;
+            }
+
+            case VIDEO_GET:{
+                successResult(FilterVideoResponses.getVideos(vKResponse));
                 break;
             }
         }
