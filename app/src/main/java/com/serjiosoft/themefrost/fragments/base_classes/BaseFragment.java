@@ -12,7 +12,7 @@ import com.serjiosoft.themefrost.managers.JustLog;
  * Created by autoexec on 24.02.2017.
  */
 
-public class BaseFragment extends Fragment implements IBaseEventer {
+public abstract class BaseFragment extends Fragment implements IBaseEventer {
 
     protected MainActivity mActivity;
 
@@ -45,5 +45,9 @@ public class BaseFragment extends Fragment implements IBaseEventer {
 
     protected boolean ignoreResponseIfNeeded() {
         return !isAdded();
+    }
+
+    protected void initializeMenuResource(int menuResource) {
+        mActivity.setMenuResource(menuResource);
     }
 }

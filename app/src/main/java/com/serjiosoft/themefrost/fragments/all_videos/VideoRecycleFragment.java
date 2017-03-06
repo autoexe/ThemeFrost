@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.serjiosoft.themefrost.R;
+import com.serjiosoft.themefrost.builder_intent.FragmentBuilder;
 import com.serjiosoft.themefrost.managers.JustLog;
 import com.serjiosoft.themefrost.managers.ListMoreController;
 import com.serjiosoft.themefrost.themefrost_api.models_api.Video;
@@ -21,6 +22,7 @@ import com.serjiosoft.themefrost.themefrost_api.request.IVKRequest;
 import com.serjiosoft.themefrost.themefrost_api.request.JustVKRequest;
 import com.serjiosoft.themefrost.themefrost_api.request.VKRequestType;
 import com.serjiosoft.themefrost.themefrost_api.request.VKResponseConstants;
+import com.vk.sdk.api.VKApiConst;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,23 +51,37 @@ public class VideoRecycleFragment extends Fragment implements IVKRequest<ArrayLi
     public static String M_TYPE_REQUEST_ARG = "mTypeRequest";
     public static String M_VK_PARAMETER_ARG = "mVKParameter";
 
-    private Bundle args = new Bundle();
-
 
 
     public VideoRecycleFragment() {
         mClearAfter = false;
     }
 
-    public VideoRecycleFragment mVKParameter(HashMap<String, Object> mVKParameter) {
-        this.args.putSerializable(VideoRecycleFragment.M_VK_PARAMETER_ARG, mVKParameter);
-        return this;
+
+    public static class FragmentBuilder_ extends FragmentBuilder<FragmentBuilder_, VideoRecycleFragment> {
+        public VideoRecycleFragment build() {
+            VideoRecycleFragment fragment = new VideoRecycleFragment();
+            fragment.setArguments(this.args);
+            return fragment;
+        }
+
+        public FragmentBuilder_ mVKParameter(HashMap<String, Object> mVKParameter) {
+            this.args.putSerializable(VideoRecycleFragment.M_VK_PARAMETER_ARG, mVKParameter);
+            return this;
+        }
+
+        public FragmentBuilder_ mTypeRequest(VKRequestType mTypeRequest) {
+            this.args.putSerializable(VideoRecycleFragment.M_TYPE_REQUEST_ARG, mTypeRequest);
+            return this;
+        }
     }
 
-    public VideoRecycleFragment mTypeRequest(VKRequestType mTypeRequest) {
-        this.args.putSerializable(VideoRecycleFragment.M_TYPE_REQUEST_ARG, mTypeRequest);
-        return this;
+
+    public static FragmentBuilder_ builder() {
+        return new FragmentBuilder_();
     }
+
+
 
 
     @Override
@@ -95,10 +111,10 @@ public class VideoRecycleFragment extends Fragment implements IVKRequest<ArrayLi
     private void startConfigure() {
         initSwipeRefreshLayout();
 
-      //  ListMoreController.DEFAULT_PARAMETER_OFFSET = mTypeRequest.equals(VKRequestType.VIDEO_GET_CATALOG_SECTION) ? (String) mVKParameter.get(VKResponseConstants.KEY_FROM) : null;
+        ListMoreController.DEFAULT_PARAMETER_OFFSET = mTypeRequest.equals(VKRequestType.VIDEO_GET_CATALOG_SECTION) ? (String) mVKParameter.get(VKResponseConstants.KEY_FROM) : null;
         ListMoreController.DEFAULT_OFFSET = 0;
-       // int i = mTypeRequest.equals(VKRequestType.VIDEO_GET_CATALOG_SECTION)?16:mTypeRequest.equals(VKRequestType.WALL_GET)?50:20;
-        ListMoreController.DEFAULT_STEP = 20;
+        int i = mTypeRequest.equals(VKRequestType.VIDEO_GET_CATALOG_SECTION)?16:mTypeRequest.equals(VKRequestType.WALL_GET)?50:20;
+        ListMoreController.DEFAULT_STEP = i;
 
         mListMoreController = new ListMoreController(ListMoreController.DEFAULT_OFFSET, ListMoreController.DEFAULT_STEP);
 
@@ -133,7 +149,7 @@ public class VideoRecycleFragment extends Fragment implements IVKRequest<ArrayLi
 
 
     private void injectFragmentArguments(){
-       // args = getArguments();
+        Bundle args = getArguments();
         if (args != null){
             if (args.containsKey(M_VK_PARAMETER_ARG)){
                 mVKParameter = (HashMap<String, Object>) args.getSerializable(M_VK_PARAMETER_ARG);
@@ -173,12 +189,34 @@ public class VideoRecycleFragment extends Fragment implements IVKRequest<ArrayLi
     @Override
     public void loadMore() {
         mAdapter.setIsLoading(true);
-        this.mAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
+        updateCountManager();
+        canLoad();
     }
+
+    private void updateCountManager() {
+        if (this.mTypeRequest.equals(VKRequestType.VIDEO_GET_CATALOG_SECTION)) {
+            this.mVKParameter.put(VKApiConst.COUNT, Integer.valueOf(this.mListMoreController.getCount()));
+            this.mVKParameter.put(VKResponseConstants.KEY_FROM, this.mListMoreController.getParameterOffset());
+            return;
+        }
+        this.mVKParameter.put(VKApiConst.COUNT, Integer.valueOf(this.mListMoreController.getCount()));
+        this.mVKParameter.put(VKApiConst.OFFSET, Integer.valueOf(this.mListMoreController.getOffset()));
+    }
+
+
 
     @Override
     public void onFailure(int code, String message) {
-        Log.e("TabMenu#1", "OnFailure load videos: " + code + " | " + message);
+        if (isAdded()) {
+            Log.e("TabMenu#1", "OnFailure load videos: " + code + " | " + message);
+            if (this.mAdapter.getItemCount() == 0) {
+                this.mErrorLoading.setVisibility(View.VISIBLE);
+            }
+            this.mSwipeRefreshLayout.setRefreshing(false);
+            this.mAdapter.setIsLoading(false);
+            this.mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

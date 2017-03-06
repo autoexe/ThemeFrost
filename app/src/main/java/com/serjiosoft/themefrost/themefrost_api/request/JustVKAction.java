@@ -22,8 +22,30 @@ public class JustVKAction extends AsynchronousTask{
                 break;
             }
 
+            case VIDEO_GET_USER_VIDEOS:
             case VIDEO_GET:{
                 successResult(FilterVideoResponses.getVideos(vKResponse));
+                break;
+            }
+
+            case NEWS_FEED_GET:{
+                successResult(FilterVideoResponses.getVideosFromNewsResponse(vKResponse));
+                successParameter(vKResponse.json.getJSONObject("response").getString("next_from"));
+                break;
+            }
+
+            case VIDEO_GET_CATALOG:{
+                successResult(FilterVideoResponses.getCatalogs(vKResponse));
+                break;
+            }
+
+            case VIDEO_GET_CATALOG_SECTION:{
+                successResult(FilterVideoResponses.getVideos(vKResponse));
+                if (vKResponse.json.getJSONObject("response").has("next")) {
+                    this.successParameter(vKResponse.json.getJSONObject("response").getString("next"));
+                    break;
+                }
+                successParameter(null);
                 break;
             }
         }

@@ -15,4 +15,8 @@
     <color name="bg_gray_material_200">#ffececec</color>
     <color name="theme_all_error_color">#99000000</color>
     <color name="white_transp">#e6ffffff</color>
+    <color name="theme_all_gray_color">#20000000</color>
+    <color name="white_transp_small_alpha">#dcffffff</color>
+    <color name="seek_bar_bg">#30ffffff</color>
+    <color name="seek_bar_secondary_progress">#55ffffff</color>
 </resources>

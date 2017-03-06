@@ -6,8 +6,8 @@ package com.serjiosoft.themefrost.builder_intent;
 
 public interface ActivityStarter {
 
-    void start();
+    PostActivityStarter start();
 
-    void startForResult(int i);
+    PostActivityStarter startForResult(int requestCode);
 
 }

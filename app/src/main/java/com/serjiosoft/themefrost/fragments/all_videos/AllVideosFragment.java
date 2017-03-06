@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.serjiosoft.themefrost.R;
+import com.serjiosoft.themefrost.builder_intent.FragmentBuilder;
 import com.serjiosoft.themefrost.fragments.base_classes.BaseFragment;
 import com.serjiosoft.themefrost.managers.UserController;
 import com.serjiosoft.themefrost.themefrost_api.request.VKRequestType;
@@ -28,7 +29,19 @@ public class AllVideosFragment extends BaseFragment {
     protected TabLayout mTabsLayout;
     protected ViewPager mPagerVideos;
     private VideosPagerAdapter mPagerVideosAdapter;
-    protected VideoRecycleFragment mVideoRecycleFragment;
+
+
+    public static class FragmentBuilder_ extends FragmentBuilder<FragmentBuilder_, AllVideosFragment> {
+        public AllVideosFragment build() {
+            AllVideosFragment fragment = new AllVideosFragment();
+            fragment.setArguments(this.args);
+            return fragment;
+        }
+    }
+
+    public static FragmentBuilder_ builder() {
+        return new FragmentBuilder_();
+    }
 
 
     @Nullable
@@ -64,16 +77,16 @@ public class AllVideosFragment extends BaseFragment {
     }
 
     private void initializePager(){
-        //Bundle args = new Bundle();
-        //args.putBundle("mVKParameter", (VKRequestType.VIDEO_GET).V);
-
         mPagerVideosAdapter = new VideosPagerAdapter(getChildFragmentManager());
-        mPagerVideosAdapter.addFragment(new VideoRecycleFragment()
-                .mTypeRequest(VKRequestType.VIDEO_GET)
-                .mVKParameter(VKParameters.from(VKApiConst.OWNER_ID, Integer.valueOf(UserController.getUser(mActivity).id),
-                        VKApiWall.EXTENDED, Integer.valueOf(1))), getString(R.string.my_video_added));
+        mPagerVideosAdapter.addFragment(VideoRecycleFragment.builder().mTypeRequest(VKRequestType.VIDEO_GET)
+                .mVKParameter(VKParameters.from(VKApiConst.OWNER_ID, Integer.valueOf(UserController.getUser(mActivity).id)
+                        , VKApiWall.EXTENDED, Integer.valueOf(1))).build(), getString(R.string.my_video_added));
 
-        mPagerVideosAdapter.addFragment(new VideoRecycleFragment(), getString(R.string.my_video_with_me));
+        mPagerVideosAdapter.addFragment(VideoRecycleFragment.builder()
+                .mTypeRequest(VKRequestType.VIDEO_GET_USER_VIDEOS)
+                .mVKParameter(VKParameters.from(VKApiConst.USER_ID, Integer.valueOf(UserController.getUser(mActivity).id)
+                        , VKApiWall.EXTENDED, Integer.valueOf(1))).build(), getString(R.string.my_video_with_me));
+
 
         mPagerVideos.setAdapter(mPagerVideosAdapter);
 
@@ -86,6 +99,5 @@ public class AllVideosFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 }

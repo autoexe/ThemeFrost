@@ -14,11 +14,11 @@ import java.io.Serializable;
  * Created by autoexec on 22.02.2017.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.ThemeFrost_RED);
         super.onCreate(savedInstanceState);
     }
@@ -31,16 +31,16 @@ public class BaseActivity extends AppCompatActivity {
         if (isMainActivity){
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commitAllowingStateLoss();
         } else {
-            MainActivity.intent((Context) this).mIsMainActivity(true).mBaseFragmentClass(fragment.getClass()).mBaseFragmentArguments(fragment.getArguments()).start();
+            MainActivity.intent(this).mIsMainActivity(true).mBaseFragmentClass(fragment.getClass()).mBaseFragmentArguments(fragment.getArguments()).start();
         }
     }
 
     public void nextFragment(BaseFragment fragment){
-        MainActivity.intent((Context) this).mIsMainActivity(false).mBaseFragmentClass(fragment.getClass()).mBaseFragmentArguments(fragment.getArguments()).start();
+        MainActivity.intent(this).mIsMainActivity(false).mBaseFragmentClass(fragment.getClass()).mBaseFragmentArguments(fragment.getArguments()).start();
     }
 
     public void nextFragment(BaseFragment fragment, Bundle options){
-        MainActivity.intent((Context) this).mIsMainActivity(false).mBaseFragmentClass(fragment.getClass()).mBaseFragmentArguments(fragment.getArguments()).withOptions(options).start();
+        MainActivity.intent(this).mIsMainActivity(false).mBaseFragmentClass(fragment.getClass()).mBaseFragmentArguments(fragment.getArguments()).withOptions(options).start();
     }
 
 }

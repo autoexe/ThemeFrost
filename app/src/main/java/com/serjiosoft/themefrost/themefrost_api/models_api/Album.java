@@ -20,6 +20,10 @@ public final class Album implements CatalogKid, IOwnerSelf {
     public long updated_time;
 
 
+    public boolean isSystem() {
+        return this.is_system == 1;
+    }
+
 
     @Override
     public String getOwnerName() {

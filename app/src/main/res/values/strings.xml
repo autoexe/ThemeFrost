@@ -35,4 +35,21 @@
     <string name="like">Мне нравится</string>
     <string name="repost">Себе на стену</string>
     <string name="translation_image">preview_image_animation_transition</string>
+    <string name="share">Поделиться</string>
+    <string name="prosmotr">%s просмотр</string>
+    <string name="prosmotra">%s просмотра</string>
+    <string name="prosmotrov">%s просмотров</string>
+    <string name="_1080">1080</string>
+    <string name="_240">240</string>
+    <string name="_360">360</string>
+    <string name="_480">480</string>
+    <string name="_720">720</string>
+    <string name="quality">Качество видео</string>
+    <string name="cannot_open_this_video">"Извините, но плеер не может
+воспроизвести это видео"</string>
+    <string name="more_catalog">ЕЩЁ</string>
+    <string name="album_video">%s видео</string>
+    <string name="album_empty">Здесь нет альбомов</string>
+    <string name="videos">Видеозаписи</string>
+    <string name="retry">Retry</string>
 </resources>

@@ -17,10 +17,12 @@ import android.widget.FrameLayout;
 
 import com.serjiosoft.themefrost.builder_intent.ActivityIntentBuilder;
 import com.serjiosoft.themefrost.builder_intent.IntentBuilder;
+import com.serjiosoft.themefrost.builder_intent.PostActivityStarter;
 import com.serjiosoft.themefrost.custom_views.menu.DrawerMenuView;
 import com.serjiosoft.themefrost.fragments.base_classes.BaseFragment;
 import com.serjiosoft.themefrost.fragments.base_classes.BaseFragmentExtra;
 import com.serjiosoft.themefrost.fragments.base_classes.IBaseEventer;
+import com.serjiosoft.themefrost.fragments.owners.SearchMenuController;
 
 import java.io.Serializable;
 
@@ -37,23 +39,11 @@ public class MainActivity extends BaseActivity {
     private Class<? extends BaseFragment> mBaseFragmentClass;
     private boolean mIsMainActivity = true;
     private int menuResource = 0;
+    private SearchMenuController mSearchMenuController;
 
     public static final String M_IS_MAIN_ACTIVITY_EXTRA = "mIsMainActivity";
     public static final String M_BASE_FRAGMENT_CLASS_EXTRA = "mBaseFragmentClass";
     public static final String M_BASE_FRAGMENT_ARGUMENTS_EXTRA = "mBaseFragmentArguments";
-
-
-    public static IntentBuilder_ intent(Context context) {
-        return new IntentBuilder_(context);
-    }
-
-    public static IntentBuilder_ intent(android.app.Fragment fragment) {
-        return new IntentBuilder_(fragment);
-    }
-
-    public static IntentBuilder_ intent(Fragment supportFragment) {
-        return new IntentBuilder_(supportFragment);
-    }
 
 
 
@@ -90,7 +80,7 @@ public class MainActivity extends BaseActivity {
             return (IntentBuilder_) super.extra(MainActivity.M_BASE_FRAGMENT_CLASS_EXTRA, (Serializable) mBaseFragmentClass);
         }
 
-        @Override
+       /* @Override
         public void startForResult(int requestCode) {
             if (fragmentSupport != null) {
                 fragmentSupport.startActivityForResult(intent, requestCode);
@@ -107,13 +97,46 @@ public class MainActivity extends BaseActivity {
             } else {
                 context.startActivity(intent);
             }
+        }*/
+
+        @Override
+        public PostActivityStarter startForResult(int requestCode) {
+            if (fragmentSupport != null) {
+                fragmentSupport.startActivityForResult(intent, requestCode);
+            } else if (fragment != null) {
+                if (Build.VERSION.SDK_INT >= 16) {
+                    fragment.startActivityForResult(intent, requestCode, lastOptions);
+                } else {
+                    fragment.startActivityForResult(intent, requestCode);
+                }
+            } else if (context instanceof Activity) {
+                ActivityCompat.startActivityForResult((Activity) context, intent, requestCode, lastOptions);
+            } else if (Build.VERSION.SDK_INT >= 16) {
+                context.startActivity(intent, lastOptions);
+            } else {
+                context.startActivity(intent);
+            }
+            return null;
         }
     }
 
+    public static IntentBuilder_ intent(Context context) {
+        return new IntentBuilder_(context);
+    }
+
+    public static IntentBuilder_ intent(android.app.Fragment fragment) {
+        return new IntentBuilder_(fragment);
+    }
+
+    public static IntentBuilder_ intent(Fragment supportFragment) {
+        return new IntentBuilder_(supportFragment);
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        injectExtras();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -122,10 +145,12 @@ public class MainActivity extends BaseActivity {
         mDrawerMenu = (DrawerMenuView) findViewById(R.id.dmvLeftMenu_AM);
 
         startConfigs();
+
     }
 
     private void startConfigs(){
-        mDrawerMenu.attachActivity(this, choosedMenuItem, new BaseFragmentExtra(mBaseFragmentClass, mBaseFragmentArguments));
+        mSearchMenuController = new SearchMenuController(this);
+        mDrawerMenu.attachActivity(this, choosedMenuItem, new BaseFragmentExtra(this.mBaseFragmentClass, this.mBaseFragmentArguments));
     }
 
     public void initToolbar(Toolbar toolbar){
@@ -212,6 +237,10 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    public void setMenuResource(int menuResource) {
+        menuResource = menuResource;
+    }
+
 
     @Override
     public void setIntent(Intent newIntent) {
@@ -221,5 +250,17 @@ public class MainActivity extends BaseActivity {
 
     private void injectExtras() {
         Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            if (extras.containsKey(M_BASE_FRAGMENT_ARGUMENTS_EXTRA)) {
+                this.mBaseFragmentArguments = extras.getBundle(M_BASE_FRAGMENT_ARGUMENTS_EXTRA);
+            }
+            if (extras.containsKey(M_IS_MAIN_ACTIVITY_EXTRA)) {
+                this.mIsMainActivity = extras.getBoolean(M_IS_MAIN_ACTIVITY_EXTRA);
+            }
+            if (extras.containsKey(M_BASE_FRAGMENT_CLASS_EXTRA)) {
+                this.mBaseFragmentClass = (Class) extras.getSerializable(M_BASE_FRAGMENT_CLASS_EXTRA);
+            }
+
+        }
     }
 }

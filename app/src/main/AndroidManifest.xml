@@ -3,6 +3,10 @@
     package="com.serjiosoft.themefrost" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <application
         android:allowBackup="true"
@@ -21,8 +25,14 @@
         </activity>
 
         <activity android:name=".MainActivity" android:configChanges="orientation|screenSize" />
-	
+		
+		<activity android:name=".video_player.VideoPlayerActivity" 
+		android:launchMode="singleInstance" android:screenOrientation="sensorLandscape" android:configChanges="keyboardHidden|orientation|screenSize" />
 
+        <activity android:name=".video_player.WebViewPlayer" android:launchMode="singleInstance" android:screenOrientation="sensorLandscape" />
+
+        <activity android:name=".exo_player.ExoPlayerActivity"
+            android:launchMode="singleInstance" android:screenOrientation="sensorLandscape" android:configChanges="keyboardHidden|orientation|screenSize" />
 
     </application>
 

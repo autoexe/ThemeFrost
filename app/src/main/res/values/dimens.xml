@@ -5,10 +5,12 @@
     <dimen name="defalutAreableHeight">80.0dip</dimen>
     <dimen name="navigationDrawerMenu">280.0dip</dimen>
     <dimen name="padding4">4.0dip</dimen>
+    <dimen name="padding8">8.0dip</dimen>
     <dimen name="heightMenuItem">55.0dip</dimen>
     <dimen name="paddingCardContainer">12.0dip</dimen>
     <dimen name="paddingHalfCardContainer">6.0dip</dimen>
     <dimen name="width_card_video">270.0dip</dimen>
     <dimen name="height_card_video">250.0dip</dimen>
     <dimen name="height_video_detail_head">200.0dip</dimen>
+    <dimen name="dialog_width">300.0dip</dimen>
 </resources>

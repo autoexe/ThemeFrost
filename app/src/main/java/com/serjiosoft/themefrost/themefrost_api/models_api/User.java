@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by autoexec on 24.02.2017.
  */
 
-public class User implements Serializable, IOwnerSelf {
+public final class User implements Serializable, IOwnerSelf {
 
     public String first_name;
     public int id;

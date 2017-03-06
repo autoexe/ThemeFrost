@@ -62,15 +62,57 @@ public final class JustVKRequest {
             }
 
             case VIDEO_GET_CATALOG_SECTION:{
+                new VKRequest("video.getCatalogSection", this.mVkParameters).executeWithListener(this.mLocalVKListener);
                 break;
             }
 
-            case WALL_GET:{
+            case WALL_GET: {
+                VKApi.wall().get(this.mVkParameters).executeWithListener(this.mLocalVKListener);
                 break;
             }
 
             case VIDEO_GET:{
                 VKApi.video().get(mVkParameters).executeWithListener(mLocalVKListener);
+                break;
+            }
+
+            case NEWS_FEED_GET:{
+                new VKRequest("newsfeed.get", mVkParameters).executeWithListener(mLocalVKListener);
+                break;
+            }
+
+            case VIDEO_GET_CATALOG: {
+                new VKRequest("video.getCatalog", this.mVkParameters).executeWithListener(this.mLocalVKListener);
+                break;
+            }
+
+            case GROUPS_GET: {
+                VKApi.groups().get(this.mVkParameters).executeWithListener(this.mLocalVKListener);
+                break;
+            }
+
+            case FRIENDS_GET: {
+                VKApi.friends().get(this.mVkParameters).executeWithListener(this.mLocalVKListener);
+                break;
+            }
+
+            case FAVE_GET_VIDEO: {
+                new VKRequest("fave.getVideos", this.mVkParameters).executeWithListener(this.mLocalVKListener);
+                break;
+            }
+
+            case VIDEO_GET_ALBUMS: {
+                VKApi.video().getAlbums(this.mVkParameters).executeWithListener(this.mLocalVKListener);
+                break;
+            }
+
+            case VIDEO_GET_USER_VIDEOS: {
+                VKApi.video().getUserVideos(this.mVkParameters).executeWithListener(this.mLocalVKListener);
+                break;
+            }
+
+            case WALL_REPOST: {
+                VKApi.wall().repost(this.mVkParameters).executeWithListener(this.mLocalVKListener);
                 break;
             }
         }

@@ -4,10 +4,10 @@ package com.serjiosoft.themefrost.themefrost_api.models_api;
  * Created by autoexec on 24.02.2017.
  */
 
-public interface IOwnerSelf {
+public abstract interface IOwnerSelf {
 
-    String getOwnerName();
+   public abstract String getOwnerName();
 
-    String getOwnerUrlPhoto();
+    public abstract String getOwnerUrlPhoto();
 
 }

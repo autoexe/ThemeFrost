@@ -46,7 +46,7 @@ public class VideoRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == 2) {
-            return new LoadMoreHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.load_more_view, parent, false), this.mLoadMoreInterface);
+            return new LoadMoreHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.load_more_view, parent, false), mLoadMoreInterface);
         }
 
         return new VideoRecycleHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video, parent, false), parent.getContext());
@@ -55,16 +55,16 @@ public class VideoRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof VideoRecycleHolder) {
-            ((VideoRecycleHolder) holder).injectVideo((Video) this.mVideos.get(position), position);
+            ((VideoRecycleHolder) holder).injectVideo(mVideos.get(position), position);
         }else {
-            ((LoadMoreHolder) holder).setIsLoading(this.isLoading);
+            ((LoadMoreHolder) holder).setIsLoading(isLoading);
         }
     }
 
     @Override
     public int getItemCount() {
-        int size = this.mVideos.size();
-        int i = (!this.isLoadMore || this.mVideos.size() <= 0) ? 0 : 1;
+        int size = mVideos.size();
+        int i = (!isLoadMore || mVideos.size() <= 0) ? 0 : 1;
         return i + size;
 
     }
@@ -72,7 +72,7 @@ public class VideoRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        return (position == getItemCount() + -1 && this.isLoadMore) ? 2 : 1;
+        return (position == getItemCount() + -1 && isLoadMore) ? 2 : 1;
     }
 
 
@@ -82,7 +82,7 @@ public class VideoRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void clearAll() {
-        this.mVideos.clear();
+        mVideos.clear();
     }
 
 }

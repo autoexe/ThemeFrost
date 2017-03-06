@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.serjiosoft.themefrost.MainActivity;
 import com.serjiosoft.themefrost.R;
 import com.serjiosoft.themefrost.custom_views.RecycleViewPicassoLight;
+import com.serjiosoft.themefrost.fragments.VideoUIUtils;
 import com.serjiosoft.themefrost.fragments.video_detail.VideoDetailFragment;
 import com.serjiosoft.themefrost.managers.UserController;
 import com.serjiosoft.themefrost.managers.picasso.CircleTransform;
@@ -58,12 +59,12 @@ public class VideoRecycleHolder extends RecyclerView.ViewHolder implements View.
         mVideo = video;
         mTitle.setText((pos + 1) + ". " + this.mVideo.title);
         mDescription.setText(TextUtils.isEmpty(this.mVideo.description) ? this.mVideo.getOwnerName() : this.mVideo.description);
-        //mCountViews.setText(this.mContext.getString(VideoUIUtils.getSeeTitleRes(this.mVideo.views), new Object[]{COUNT_FORMATTER.format((long) this.mVideo.views)}));
+        mCountViews.setText(this.mContext.getString(VideoUIUtils.getSeeTitleRes(this.mVideo.views), new Object[]{COUNT_FORMATTER.format((long) this.mVideo.views)}));
         if (this.mVideo.duration == 0) {
             this.mDurationView.setVisibility(View.GONE);
         } else {
             this.mDurationView.setVisibility(View.VISIBLE);
-            //this.mDurationView.setText(VideoUIUtils.getDuration(video.duration));
+            this.mDurationView.setText(VideoUIUtils.getDuration(video.duration));
         }
         Picasso.with(this.mContext).load(this.mVideo.photo_320).tag(RecycleViewPicassoLight.PICASSO_TAG).placeholder(null).into(this.mImageVideo);
         mTitleOwner.setText(this.mVideo.getOwnerName());
@@ -85,6 +86,7 @@ public class VideoRecycleHolder extends RecyclerView.ViewHolder implements View.
         if (Build.VERSION.SDK_INT >= 21) {
             ((MainActivity) this.mContext).nextFragment(VideoDetailFragment.builder().mVideo(this.mVideo).build(),
                     ActivityOptionsCompat.makeSceneTransitionAnimation((MainActivity) this.mContext, this.mImageVideo, this.mContext.getString(R.string.translation_image)).toBundle());
+            return;
         }
         ((MainActivity) this.mContext).nextFragment(VideoDetailFragment.builder().mVideo(this.mVideo).build());
     }
