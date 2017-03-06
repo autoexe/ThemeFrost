@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:orientation="horizontal"
+        android:weightSum="2.0">
+
+        <TextView
+            android:id="@+id/tv240_VQ"
+            style="@style/QualityTextViewStyle"
+            android:text="@string/_240" />
+
+        <TextView
+            android:id="@+id/tv360_VQ"
+            style="@style/QualityTextViewStyle"
+            android:text="@string/_360" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:orientation="horizontal"
+        android:weightSum="2.0">
+
+        <TextView
+            android:id="@+id/tv480_VQ"
+            style="@style/QualityTextViewStyle"
+            android:text="@string/_480" />
+
+        <TextView
+            android:id="@+id/tv720_VQ"
+            style="@style/QualityTextViewStyle"
+            android:text="@string/_720" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:orientation="horizontal"
+        android:weightSum="2.0">
+
+        <TextView
+            android:id="@+id/tv1080_VQ"
+            style="@style/QualityTextViewStyle"
+            android:text="@string/_1080" />
+
+        <View
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

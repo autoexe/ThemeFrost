@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/dialog_width"
+    android:layout_height="wrap_content"
+    android:background="?colorBackgrounds"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle_JAD"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorActionBar"
+        android:gravity="center"
+        android:maxLines="2"
+        android:paddingTop="@dimen/padding8"
+        android:textColor="@android:color/white"
+        android:textSize="17.0sp"
+        android:textStyle="bold" />
+
+    <com.serjiosoft.themefrost.custom_views.BaseShadowView
+        android:layout_width="fill_parent"
+        android:layout_height="16.0dip"
+        app:colorAreaShadow="?colorActionBar"
+        app:colorAreaShadowDarkness="?colorStatusBar"
+        app:heightAreaAngleable="16.0dip"
+        app:percentageBasePoint="50" />
+
+    <FrameLayout
+        android:id="@+id/flContainer_JAD"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/paddingContainer" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="?colorStatusBar">
+
+        <com.serjiosoft.themefrost.custom_views.BaseShadowView
+            android:layout_width="fill_parent"
+            android:layout_height="30.0dip"
+            app:colorAreaShadow="?colorBackgrounds"
+            app:colorAreaShadowDarkness="?colorBackgroundsDarkness"
+            app:heightAreaAngleable="30.0dip"
+            app:percentageBasePoint="50" />
+
+        <ImageView
+            android:id="@+id/ivOk_JAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|right"
+            android:padding="@dimen/paddingCardContainer"
+            android:src="@drawable/ic_ok" />
+
+        <ImageView
+            android:id="@+id/ivCancel_JAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center|left"
+            android:padding="@dimen/paddingCardContainer"
+            android:src="@drawable/ic_cancel" />
+    </FrameLayout>
+</LinearLayout>

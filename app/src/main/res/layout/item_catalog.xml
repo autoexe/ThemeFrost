@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/height_card_video"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/paddingHalfCardContainer"
+        android:paddingLeft="@dimen/paddingCardContainer"
+        android:paddingRight="@dimen/paddingCardContainer"
+        android:paddingTop="@dimen/paddingContainer">
+
+        <ImageView
+            android:id="@+id/ivPhotoSection_IC"
+            android:layout_width="37.0dip"
+            android:layout_height="37.0dip"
+            android:background="@drawable/default_oval_gray"
+            android:padding="2.0dip" />
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitleSection_IC"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/paddingContainer"
+                android:paddingRight="@dimen/paddingContainer"
+                android:singleLine="true"
+                android:textColor="?colorText"
+                android:textSize="17.0sp" />
+
+            <TextView
+                android:id="@+id/tvSubtitleSection_IC"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/paddingContainer"
+                android:paddingRight="@dimen/paddingContainer"
+                android:singleLine="true"
+                android:textColor="?colorText"
+                android:textSize="12.0sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvMore_IC"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/selector_item"
+            android:gravity="center"
+            android:paddingLeft="@dimen/paddingCardContainer"
+            android:paddingRight="@dimen/paddingCardContainer"
+            android:singleLine="true"
+            android:text="@string/more_catalog"
+            android:textColor="?colorStatusBar"
+            android:textSize="15.0sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.serjiosoft.themefrost.custom_views.RecycleViewPicassoLight
+        android:id="@+id/rvSections_IC"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:padding="@dimen/paddingHalfCardContainer"
+        android:scrollbars="none" />
+</LinearLayout>

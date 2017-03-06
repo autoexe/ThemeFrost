@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:keepScreenOn="true">
+
+    <VideoView
+        android:id="@+id/videoPlayer_AVP"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/llVideoControllerContainer_AVP"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_gradient_inverse"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding8">
+
+            <CheckBox
+                android:id="@+id/cbPlayPause_AVP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/paddingCardContainer"
+                android:button="@drawable/player_pp_selector" />
+
+            <TextView
+                android:id="@+id/tvLeftTime_AVP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding4"
+                android:layout_toRightOf="@id/cbPlayPause_AVP"
+                android:padding="@dimen/paddingHalfCardContainer"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="1.0"
+                android:shadowDy="1.0"
+                android:shadowRadius="1.0"
+                android:textColor="@android:color/white"
+                android:textSize="20.0sp" />
+
+            <TextView
+                android:id="@+id/tvRightTime_AVP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/paddingHalfCardContainer"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="1.0"
+                android:shadowDy="1.0"
+                android:shadowRadius="1.0"
+                android:textColor="@android:color/white"
+                android:textSize="20.0sp" />
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/pbProgress_AVP"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="0"
+            android:maxHeight="7.0dip"
+            android:minHeight="7.0dip"
+            android:padding="0.0dip"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_video_track"
+            android:secondaryProgress="0"
+            android:thumb="@null"
+            android:thumbOffset="0.0dip" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivPlayPauseIntro_AVP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <com.serjiosoft.themefrost.custom_views.ProgressTimeVideoPlayerView
+        android:id="@+id/ptvpvPlayer_AVP"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:id="@+id/llTitleVideoContainer_AVP"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gradient"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/paddingCardContainer"
+        android:paddingRight="@dimen/paddingContainer"
+        android:paddingTop="@dimen/paddingCardContainer">
+
+        <ImageView
+            android:id="@+id/ivBack_AVP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/paddingContainer"
+            android:src="@drawable/ic_back_white" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitleVideo_AVP"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40.0dip"
+                android:maxLines="2"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="1.0"
+                android:shadowDy="1.0"
+                android:shadowRadius="1.0"
+                android:textColor="@android:color/white"
+                android:textSize="21.0sp" />
+
+            <TextView
+                android:id="@+id/tvOwnerTitleVideo_AVP"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40.0dip"
+                android:singleLine="true"
+                android:textColor="@color/white_transp_small_alpha"
+                android:textSize="16.0sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.serjiosoft.themefrost.custom_views.progresses.ProgressViewWhite
+        android:id="@+id/pvwProgressLoadingVideo_AVP"
+        android:layout_width="40.0dip"
+        android:layout_height="40.0dip"
+        android:layout_gravity="center|right|top"
+        android:layout_margin="15.0dip"
+        android:visibility="gone" />
+</FrameLayout>
