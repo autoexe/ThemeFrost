@@ -175,12 +175,13 @@ public class ExoPlayerActivity extends BaseActivity implements ExoPlayer.EventLi
         mainHandler = new Handler();
 
         setVKVideo();
+
+        setImmersiveMode();
     }
 
 
 
     private void setVKVideo() {
-        String userAgent = "hls";
         Uri uri = Uri.parse(mVideoForPlaying.files.getQuality(mQuality));
 
         TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
