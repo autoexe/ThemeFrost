@@ -22,16 +22,18 @@ import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveVideoTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.upstream.HttpDataSource;
+import com.google.android.exoplayer2.util.Util;
 import com.serjiosoft.themefrost.BaseActivity;
 import com.serjiosoft.themefrost.R;
 import com.serjiosoft.themefrost.builder_intent.ActivityIntentBuilder;
@@ -50,13 +52,10 @@ public class ExoPlayerActivity extends BaseActivity implements ExoPlayer.EventLi
     protected int mQuality;
     protected Video mVideoForPlaying;
 
-    private SimpleExoPlayer player;
-
-    private SimpleExoPlayerView simpleExoPlayerView;
-
     private Handler mainHandler;
-
-    private TrackSelection.Factory videoTrackSelectionFactory;
+    private SimpleExoPlayerView simpleExoPlayerView;
+    private SimpleExoPlayer player;
+    private static final DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
 
 
     @Override
@@ -171,11 +170,9 @@ public class ExoPlayerActivity extends BaseActivity implements ExoPlayer.EventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exo_player_activity);
 
-        mainHandler = new Handler();
-
         simpleExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.player_view);
-        simpleExoPlayerView.setControllerVisibilityListener(this);
-        simpleExoPlayerView.requestFocus();
+
+        mainHandler = new Handler();
 
         setVKVideo();
     }
@@ -186,20 +183,24 @@ public class ExoPlayerActivity extends BaseActivity implements ExoPlayer.EventLi
         String userAgent = "hls";
         Uri uri = Uri.parse(mVideoForPlaying.files.getQuality(mQuality));
 
-        DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
+        player = ExoPlayerFactory.newSimpleInstance(this, new DefaultTrackSelector(videoTrackSelectionFactory),
+                new DefaultLoadControl());
 
-        videoTrackSelectionFactory = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
-        TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
-        DefaultLoadControl loadControl = new DefaultLoadControl();
+        simpleExoPlayerView.setPlayer(player);
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, bandwidthMeter,
+                buildHttpDataSourceFactory(bandwidthMeter));
 
-        MediaSource videoSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(this, userAgent, bandwidthMeter), new DefaultExtractorsFactory(), mainHandler, null);
-        player = ExoPlayerFactory.newSimpleInstance(this, trackSelector, loadControl);
-       // player = ExoPlayerFactory.newSimpleInstance(this, new DefaultTrackSelector(new AdaptiveVideoTrackSelection.Factory(bandwidthMeter)), new DefaultLoadControl());
-        player.setPlayWhenReady(true);
+        MediaSource videoSource = new ExtractorMediaSource(uri, dataSourceFactory, new DefaultExtractorsFactory(), new Handler(), null);
         player.prepare(videoSource);
-
+        player.setPlayWhenReady(true);
     }
 
+
+    private HttpDataSource.Factory buildHttpDataSourceFactory(DefaultBandwidthMeter bandwidthMeter) {
+        return new DefaultHttpDataSourceFactory(Util.getUserAgent(this,
+                getString(R.string.app_name)), bandwidthMeter);
+    }
 
     @Override
     public void setIntent(Intent newIntent) {
@@ -227,4 +228,11 @@ public class ExoPlayerActivity extends BaseActivity implements ExoPlayer.EventLi
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (player != null){
+            player.release();
+        }
+    }
 }
